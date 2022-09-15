@@ -1,0 +1,97 @@
+
+<html>
+    <head>
+        <title>SCROLLSPY</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            .main{
+                width: 100%;
+                padding: 1em 0;
+                position: fixed;
+                box-sizing: border-box;
+                background-color: black;
+            }
+            .nav{
+                display: flex;
+                justify-content: space-evenly;
+                height: 3em;
+                line-height: 3em;
+            }
+            a{
+                text-decoration: none;
+                color: white;
+                font-weight: 900;
+                font-size: large;   
+            }
+            a:hover{
+                color: black;
+                background-color: white;
+            }
+            .section{
+                padding: 0 1em;
+                margin: 0 3em;
+                border-radius: 2em;
+                transition: all .4s;
+            }
+            a.active{
+                background-color: white;
+                color: black;
+            }
+            a.active:hover{
+                padding: 0 4em;
+                margin: 0;
+            }
+            section{
+                height: 100vh;
+                text-align: center;
+                font-size: 7em;
+                font-weight: bolder;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #ccc;
+            }
+            section:nth-child(odd){
+                background-color: #eee;
+            }          
+        </style>
+    </head>
+    <body>
+        <script>
+            $(document).ready(function(){
+                $(document).scroll(function(){
+                    $("a.section").each(function(){
+                        var section = $(this).attr("href");
+                        var offset = $(section).offset().top;
+                        var height = $(section).height();
+                        var bottom = offset + height;
+                        var scrollposition = $(document).scrollTop();
+                        if (scrollposition < bottom - 600 && scrollposition >= offset -600) {
+                            $(this).addClass("active")
+                        }
+                        else{
+                            $(this).removeClass("active")
+                        }
+                    })
+                    
+                })
+            })
+        </script>
+        <div class="main">
+            <div class="nav">
+                <a href="#section1" class="section active">HOME</a>
+                <a href="#section2" class="section">ABOUT</a>
+                <a href="#section3" class="section">BLOG</a>
+                <a href="#section4" class="section">CONTECT</a>
+            </div>
+        </div>
+        <section id="section1" ><h3>HOME</h3></section>
+        <section id="section2" ><h3>ABOUT</h3></section>
+        <section id="section3" ><h3>BLOG</h3></section>
+        <section id="section4" ><h3>CONTECT</h3></section>
+    </body>
+</html>
